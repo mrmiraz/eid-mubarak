@@ -43,6 +43,41 @@ body {
     animation: fadeInUp 0.8s ease-out;
 }
 
+/* Flying Carpet with Fruits */
+.flying-carpet {
+    position: fixed;
+    z-index: 100;
+    pointer-events: none;
+    animation: flyAround 25s linear infinite;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+.carpet {
+    font-size: 5rem;
+    position: relative;
+    animation: carpetWave 2s ease-in-out infinite;
+}
+
+.fruits {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+}
+
+.fruit {
+    font-size: 2rem;
+    display: inline-block;
+    animation: fruitBounce 1.5s ease-in-out infinite;
+}
+
+.fruit-1 { animation-delay: 0s; }
+.fruit-2 { animation-delay: 0.2s; }
+.fruit-3 { animation-delay: 0.4s; }
+.fruit-4 { animation-delay: 0.6s; }
+
 /* Moon and Stars */
 .moon-stars {
     position: absolute;
@@ -89,7 +124,7 @@ body {
     color: #ffd700;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     margin-bottom: 20px;
-    animation: slideDown 1s ease-out;
+    animation: slideDown 1s ease-out, pulse 2s ease-in-out 1s infinite;
 }
 
 .message {
@@ -105,6 +140,7 @@ body {
     color: #ffd700;
     margin: 20px 0;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    animation: glow 3s ease-in-out infinite;
 }
 
 /* Buttons */
@@ -120,15 +156,17 @@ body {
     box-shadow: 0 4px 15px rgba(233, 30, 99, 0.4);
     transition: all 0.3s ease;
     font-weight: 600;
+    animation: float 3s ease-in-out infinite;
 }
 
 .btn-next:hover, .btn-back:hover {
-    transform: translateY(-2px);
+    transform: translateY(-5px) scale(1.05);
     box-shadow: 0 6px 20px rgba(233, 30, 99, 0.6);
+    animation: none;
 }
 
 .btn-next:active, .btn-back:active {
-    transform: translateY(0);
+    transform: translateY(0) scale(0.98);
 }
 
 .btn-back {
@@ -146,24 +184,82 @@ body {
     font-size: 2.5rem;
     color: #ffd700;
     margin-bottom: 30px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5), 2px 2px 4px rgba(0, 0, 0, 0.3);
+    animation: titleShine 3s ease-in-out infinite;
 }
 
 .wishes-container {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    padding: 30px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
+    backdrop-filter: blur(15px);
+    border-radius: 25px;
+    padding: 40px;
     margin: 20px auto;
-    max-width: 600px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    max-width: 650px;
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), inset 0 0 20px rgba(255, 215, 0, 0.1);
+    animation: fadeInScale 0.8s ease-out, cardGlow 4s ease-in-out infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+.wishes-container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    animation: shimmer 3s infinite;
+}
+
+.wish-icon {
+    font-size: 4rem;
+    text-align: center;
+    margin-bottom: 20px;
+    animation: iconRotate 4s ease-in-out infinite;
 }
 
 .wish-text {
     color: #ffffff;
+    font-size: 1.2rem;
+    line-height: 2.2;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.wish-line {
+    display: block;
+    margin: 15px 0;
+    animation: fadeInSlide 0.8s ease-out backwards;
+}
+
+.wish-line:nth-child(1) { animation-delay: 0.2s; }
+.wish-line:nth-child(2) { animation-delay: 0.4s; }
+.wish-line:nth-child(3) { animation-delay: 0.6s; }
+
+.wish-text strong {
+    color: #ffeb3b;
+    font-weight: 700;
+    text-shadow: 0 0 8px rgba(255, 235, 59, 0.5);
+}
+
+.decorative-line {
+    color: #ffd700;
+    text-align: center;
+    margin: 25px 0 15px;
+    font-size: 1.5rem;
+    opacity: 0.6;
+}
+
+.wish-signature {
+    color: #ffccdd;
     font-size: 1.1rem;
-    line-height: 1.8;
-    text-align: left;
+    text-align: center;
+    font-style: italic;
+    margin-top: 15px;
+    animation: pulse 2s ease-in-out infinite;
 }
 
 /* Step 3: Salami Section */
@@ -200,6 +296,7 @@ body {
     max-width: 400px;
     border: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    animation: fadeInScale 0.8s ease-out;
 }
 
 .qr-container {
@@ -208,6 +305,11 @@ body {
     border-radius: 10px;
     margin-bottom: 15px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.qr-container:hover {
+    transform: scale(1.05);
 }
 
 .qr-code {
@@ -402,6 +504,151 @@ body {
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes flyAround {
+    0% {
+        left: -10%;
+        top: 15%;
+        transform: rotate(0deg) scale(1);
+    }
+    12% {
+        left: 20%;
+        top: 8%;
+        transform: rotate(15deg) scale(1.1);
+    }
+    25% {
+        left: 50%;
+        top: 12%;
+        transform: rotate(-5deg) scale(1);
+    }
+    37% {
+        left: 80%;
+        top: 20%;
+        transform: rotate(10deg) scale(0.9);
+    }
+    50% {
+        left: 95%;
+        top: 45%;
+        transform: rotate(-15deg) scale(1);
+    }
+    62% {
+        left: 75%;
+        top: 65%;
+        transform: rotate(8deg) scale(1.1);
+    }
+    75% {
+        left: 45%;
+        top: 75%;
+        transform: rotate(-10deg) scale(1);
+    }
+    87% {
+        left: 15%;
+        top: 60%;
+        transform: rotate(12deg) scale(0.95);
+    }
+    100% {
+        left: -10%;
+        top: 15%;
+        transform: rotate(0deg) scale(1);
+    }
+}
+
+@keyframes carpetWave {
+    0%, 100% {
+        transform: translateY(0) scaleY(1);
+    }
+    50% {
+        transform: translateY(-8px) scaleY(0.95);
+    }
+}
+
+@keyframes fruitBounce {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-10px) rotate(5deg);
+    }
+}
+
+@keyframes titleShine {
+    0%, 100% {
+        text-shadow: 0 0 10px rgba(255, 215, 0, 0.5), 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    50% {
+        text-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 0 0 30px rgba(255, 215, 0, 0.5), 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+}
+
+@keyframes cardGlow {
+    0%, 100% {
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), inset 0 0 20px rgba(255, 215, 0, 0.1);
+    }
+    50% {
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), inset 0 0 30px rgba(255, 215, 0, 0.2), 0 0 40px rgba(255, 215, 0, 0.3);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+@keyframes iconRotate {
+    0%, 100% {
+        transform: rotate(0deg) scale(1);
+    }
+    25% {
+        transform: rotate(-10deg) scale(1.1);
+    }
+    75% {
+        transform: rotate(10deg) scale(1.1);
+    }
+}
+
+@keyframes fadeInSlide {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
     }
 }
 
