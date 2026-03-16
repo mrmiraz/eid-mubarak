@@ -162,7 +162,7 @@ body {
 .btn-next:hover, .btn-back:hover {
     transform: translateY(-5px) scale(1.05);
     box-shadow: 0 6px 20px rgba(233, 30, 99, 0.6);
-    animation: none;
+    animation-play-state: paused;
 }
 
 .btn-next:active, .btn-back:active {
